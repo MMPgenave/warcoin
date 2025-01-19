@@ -24,18 +24,18 @@ export const Trade: FC = () => {
 
   const handleBuyLong = () => {
     setBuyers((prev) => prev + 1);
-    setString("Buy/Long");
+    setString("Buy");
   };
 
   const handleSellShort = () => {
     setSellers((prev) => prev + 1);
-    setString("Sell/Short");
+    setString("Sell");
   };
 
   return (
     <Page>
-      <div className="flex flex-col gap-6 items-center mt-[3rem] h-screen">
-        <div className="flex flex-col  h-[15rem] w-1/2 ">
+      <div className="flex flex-col gap-6 items-center mt-[1rem] h-screen">
+        <div className="flex flex-col  h-[12rem] w-1/2 ">
           <div
             style={{ height: `${heightPercentage}%` }}
             className={` bg-green-300  rounded-t-lg relative flex justify-center items-center `}
@@ -63,12 +63,12 @@ export const Trade: FC = () => {
               value={bet}
             />
           </Tooltip>
-          <div className=" text-lg mt-4">Avlbl:500</div>
-          <div className=" flex items-center gap-4">
-            <button type="button" onClick={handleBuyLong} className=" px-1 py-2 text-xl rounded-sm bg-green-300">
+          <div className=" text-lg ">Avlbl:500</div>
+          <div className=" flex items-center justify-center gap-4">
+            <button type="button" onClick={handleBuyLong} className=" px-1 py-2 text-lg rounded-sm bg-green-300">
               Buy/Long
             </button>
-            <button type="button" onClick={handleSellShort} className=" px-1 py-2 text-xl rounded-sm bg-red-300">
+            <button type="button" onClick={handleSellShort} className=" px-1 py-2 text-lg rounded-sm bg-red-300">
               Sell/Short
             </button>
           </div>
