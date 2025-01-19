@@ -5,6 +5,7 @@ import { Navigate, Route, Routes, HashRouter } from "react-router-dom";
 import { routes } from "@/navigation/routes.tsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 // import { Link } from "@/components/Link/Link.tsx";
+import Menu from "@/components/Menu";
 
 export function App() {
   const lp = useLaunchParams();
@@ -13,6 +14,7 @@ export function App() {
   return (
     <AppRoot appearance={isDark ? "dark" : "light"} platform={["macos", "ios"].includes(lp.platform) ? "ios" : "base"}>
       <HashRouter>
+        <Menu />
         <Routes>
           {routes.map((route) => (
             <Route key={route.path} {...route} />

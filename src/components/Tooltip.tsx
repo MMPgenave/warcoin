@@ -11,7 +11,7 @@ const Tooltip: React.FC<TooltipProps> = ({ text, children, visible }) => {
     <div className="relative inline-block">
       {children}
       {visible && (
-        <div className=" w-full absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-800 !text-red-700 text-xs rounded py-1  whitespace-nowrap z-10 transition-opacity duration-200">
+        <div className=" w-full absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 bg-gray-500 text-blue-400 text-sm text-center rounded py-1  whitespace-nowrap z-10 transition-opacity duration-200">
           {text}
         </div>
       )}
