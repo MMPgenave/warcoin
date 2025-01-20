@@ -29,4 +29,5 @@ export function Page({
 
 const Wrapper = styled.div`
   height: 100vh;
+  background: #000;
 `;

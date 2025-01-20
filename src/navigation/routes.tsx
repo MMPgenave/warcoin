@@ -21,7 +21,7 @@ export const routes: Route[] = [
     icon: "bi-house",
   },
   { path: "/task", Component: Task, title: "Task", icon: "bi-list-task" },
-  { path: "/trade", Component: Trade, title: "Trade", icon: "bi-bootstrap" },
+  { path: "/trade", Component: Trade, title: "Trade", icon: "bi-graph-up-arrow" },
   { path: "/friend", Component: Friend, title: "Friend", icon: "bi-people" },
   {
     path: "/ton-connect",
