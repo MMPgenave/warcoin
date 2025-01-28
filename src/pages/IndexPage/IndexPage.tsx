@@ -3,7 +3,7 @@
 
 import type { FC } from "react";
 
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page";
 
 export const IndexPage: FC = () => {
   return (

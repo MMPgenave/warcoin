@@ -4,7 +4,7 @@ import { Avatar, Cell, List, Navigation, Placeholder, Section, Text, Title } fro
 import type { FC } from "react";
 
 import { DisplayData } from "@/components/DisplayData/DisplayData.tsx";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page";
 
 import "./TONConnectPage.css";
 

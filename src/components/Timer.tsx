@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-const App = () => {
-  const [currentTime, setCurrentTime] = useState(new Date(0, 0, 0, 3, 30)); // Start at 3:30 AM
-  const [isRunning, setIsRunning] = useState(true);
-
+const App: React.FC = () => {
+  const [currentTime, setCurrentTime] = useState<Date>(new Date(0, 0, 0, 3, 30)); // Start at 3:30 AM
+  const [isRunning, setIsRunning] = useState<boolean>(true);
   useEffect(() => {
     const timerInterval = setInterval(() => {
       if (isRunning) {
@@ -11,8 +10,8 @@ const App = () => {
           const newTime = new Date(prevTime);
           newTime.setMinutes(newTime.getMinutes() + 1);
 
-          // Stop the timer when it reaches 3:30 AM again
-          if (newTime.getHours() === 3 && newTime.getMinutes() === 30) {
+          // Stop the timer when it reaches 3:32 AM again
+          if (newTime.getHours() === 3 && newTime.getMinutes() === 32) {
             setIsRunning(false);
           }
           return newTime;
@@ -23,7 +22,7 @@ const App = () => {
     return () => clearInterval(timerInterval); // Cleanup on unmount
   }, [isRunning]);
 
-  const formatTime = (date) => {
+  const formatTime = (date: Date): string => {
     const hours = date.getHours().toString().padStart(2, "0");
     const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${hours}:${minutes}`;

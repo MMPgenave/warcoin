@@ -3,7 +3,7 @@ import { List } from "@telegram-apps/telegram-ui";
 import type { FC } from "react";
 
 import { DisplayData } from "@/components/DisplayData/DisplayData.tsx";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page";
 
 export const Friend: FC = () => {
   const lp = useLaunchParams();

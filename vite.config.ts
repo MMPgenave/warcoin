@@ -18,6 +18,9 @@ export default defineConfig({
     // https://www.npmjs.com/package/vite-plugin-mkcert
     process.env.HTTPS && mkcert(),
   ],
+  optimizeDeps: {
+    include: ["redux-thunk"],
+  },
   publicDir: "./public",
   server: {
     // Exposes your dev server and makes it accessible for the devices in the same network.
