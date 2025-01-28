@@ -50,6 +50,7 @@ export const Trade: FC = () => {
       const btcPrice = await fetchBitcoinPrice();
       dispatch(setBitcoinPriceAfter24Hrs(Number(btcPrice)));
       dispatch(set_Show_Profit_Component(true));
+      dispatch(setTradingOpen(true));
     }, 60000);
   }
   const handleBuyOrSell = async (trade_type: string) => {
