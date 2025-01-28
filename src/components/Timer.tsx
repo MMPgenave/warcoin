@@ -11,7 +11,7 @@ const App: React.FC = () => {
           newTime.setMinutes(newTime.getMinutes() + 1);
 
           // Stop the timer when it reaches 3:32 AM again
-          if (newTime.getHours() === 3 && newTime.getMinutes() === 32) {
+          if (newTime.getHours() === 3 && newTime.getMinutes() === 31) {
             setIsRunning(false);
           }
           return newTime;
@@ -31,7 +31,7 @@ const App: React.FC = () => {
   return (
     <div>
       <div>{formatTime(currentTime)}</div>
-      {!isRunning && <div>(Timer reached 3:32 AM and stopped.)</div>}
+      {/* {!isRunning && <div>(Timer reached 3:31 AM and stopped.)</div>} */}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent, FormEvent, useState, type FC } from "react";
 import { Page } from "@/components/Page";
 import Tooltip from "@/components/Tooltip";
@@ -5,6 +6,9 @@ import Timer from "@/components/Timer";
 import Profit from "@/components/Profit";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setTradingOpen,
+  setBet,
+  setTradeType,
   setBitcoinPriceAtTime0330,
   setBitcoinPriceAfter24Hrs,
   set_Show_Profit_Component,
@@ -13,17 +17,17 @@ import {
 import { fetchBitcoinPrice } from "@/utils/get-BTC-price";
 
 export const Trade: FC = () => {
-  // const { data, error, isLoading } = useQuery({ queryKey: ["posts"], queryFn: fetchPosts });
-  const isShowProfitComponent = useSelector((state) => state.Trade.isShowProfit_Component);
+  const isShowProfitComponent = useSelector((state: any) => state.Trade.isShowProfit_Component);
+  const userCoins = useSelector((state: any) => state.Trade.userWarcoin);
+  const bet = useSelector((state: any) => state.Trade.bet);
+  const isTradingOpen = useSelector((state: any) => state.Trade.isTradingOpen);
+  const tradeType = useSelector((state: any) => state.Trade.tradeType);
   const [inputvalue, setInputvalue] = useState("");
-  const [bet, setBet] = useState(0);
   const [visible, setVisible] = useState(false);
   const [buyers, setBuyers] = useState(7);
   const [sellers, setSellers] = useState(3);
-  const [string, setString] = useState("");
   const dispatch = useDispatch();
 
-  // dispatch(incrementByAmount(Number(incrementAmount) || 0))
   const heightPercentage = ((buyers / (buyers + sellers)) * 100).toFixed(2);
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,29 +44,29 @@ export const Trade: FC = () => {
 
   async function setBitcoinPriceAtTwoDifferentTime() {
     const btcPrice = await fetchBitcoinPrice();
-    alert(`btcPrice:${btcPrice}`);
+    // alert(`btcPrice:${btcPrice}`);
     dispatch(setBitcoinPriceAtTime0330(Number(btcPrice)));
     setTimeout(async () => {
       const btcPrice = await fetchBitcoinPrice();
       dispatch(setBitcoinPriceAfter24Hrs(Number(btcPrice)));
       dispatch(set_Show_Profit_Component(true));
-    }, 120000);
+    }, 60000);
   }
-
-  const handleBuyLong = async () => {
-    setBuyers((prev) => prev + 1);
-    setString("Buy");
-    setBet(Number(inputvalue) * 3);
+  const handleBuyOrSell = async (trade_type: string) => {
+    dispatch(setTradeType(trade_type));
+    dispatch(setTradingOpen(false));
+    dispatch(setBet(Number(inputvalue) * 3));
     setBitcoinPriceAtTwoDifferentTime();
     setInputvalue("");
+  };
+  const handleBuyLong = async () => {
+    setBuyers((prev) => prev + 1);
+    handleBuyOrSell("Buy");
   };
 
   const handleSellShort = async () => {
     setSellers((prev) => prev + 1);
-    setString("Sell");
-    setBet(Number(inputvalue) * 3);
-    setBitcoinPriceAtTwoDifferentTime();
-    setInputvalue("");
+    handleBuyOrSell("Sell");
   };
 
   return (
@@ -96,7 +100,7 @@ export const Trade: FC = () => {
               </div>
             </div>
             <div className=" absolute -right-20 top-1/2 text-[#a1a1a1] font-light -translate-y-1/2 w-16 h-6 bg-[#333333] rounded flex justify-center ">
-              {string ? <Timer /> : "00:00"}
+              {!isTradingOpen ? <Timer /> : "00:00"}
             </div>
           </div>
           <form onSubmit={onSubmit} className="  flex flex-col items-center mt-4 ">
@@ -108,16 +112,26 @@ export const Trade: FC = () => {
                   className=" rounded-lg w-[100%]  text-xl p-1 text-center placeholder-center text-[#818285] bg-[#d1d2d4]"
                   onChange={handleOnChange}
                   value={inputvalue}
-                  disabled={Boolean(string)}
+                  disabled={!isTradingOpen}
                 />
               </Tooltip>
-              <div className="  text-[#fff] ">Avbl:500</div>
+              <div className="  text-[#fff] ">Avbl:{userCoins}</div>
             </div>
             <div className=" flex items-center justify-between gap-4 mt-2 text-[#fff] font-bold  w-[90%] ">
-              <button type="button" onClick={handleBuyLong} className=" px-1 py-2 w-1/2  rounded-sm bg-[#67aa50]">
+              <button
+                type="button"
+                disabled={!isTradingOpen}
+                onClick={handleBuyLong}
+                className=" px-1 py-2 w-1/2  rounded-sm bg-[#67aa50]"
+              >
                 Buy/Long
               </button>
-              <button type="button" onClick={handleSellShort} className=" px-1 py-2 w-1/2  rounded-sm bg-[#be4130]">
+              <button
+                type="button"
+                disabled={!isTradingOpen}
+                onClick={handleSellShort}
+                className=" px-1 py-2 w-1/2  rounded-sm bg-[#be4130]"
+              >
                 Sell/Short
               </button>
             </div>
@@ -128,8 +142,8 @@ export const Trade: FC = () => {
               <div className=" rounded-tr-sm bg-[#d1d2d4] w-1/2 flex justify-center">Position</div>
             </div>
             <div className="rounded-b-sm bg-[#d1d2d4] h-14 flex items-center">
-              <div className="w-1/2 flex justify-center text-lg text-gray-700">{string && bet}</div>
-              <div className="w-1/2 flex justify-center text-lg text-gray-700">{string && string}</div>
+              <div className="w-1/2 flex justify-center text-lg text-gray-700">{!isTradingOpen && bet}</div>
+              <div className="w-1/2 flex justify-center text-lg text-gray-700">{!isTradingOpen && tradeType}</div>
             </div>
           </div>
         </div>
