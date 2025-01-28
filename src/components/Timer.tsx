@@ -31,7 +31,7 @@ const App: React.FC = () => {
   return (
     <div>
       <div>{formatTime(currentTime)}</div>
-      {!isRunning && <div>(Timer reached 3:30 AM and stopped.)</div>}
+      {!isRunning && <div>(Timer reached 3:32 AM and stopped.)</div>}
     </div>
   );
 };
