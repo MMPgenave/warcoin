@@ -72,8 +72,7 @@ export const Trade: FC = () => {
 
   return (
     <Page>
-      {isShowProfitComponent && <Profit />}
-      <div className=" flex flex-col gap-3 items-center w-[60%] mt-[1.5rem]  float-start ml-[2rem]">
+      <div className=" flex  flex-col gap-3 items-center w-[60%] mt-[1.5rem]  float-start ml-[2rem]">
         <div className=" flex items-center gap-2 text-xl font-bold">
           <div className=" text-[#818285] ">Margin</div>
           <div className="flex items-center leading-0  text-[#000] bg-[#818285] size-7  justify-center  rounded ">
@@ -103,6 +102,7 @@ export const Trade: FC = () => {
             <div className=" absolute -right-20 top-1/2 text-[#a1a1a1] font-light -translate-y-1/2 w-16 h-6 bg-[#333333] rounded flex justify-center ">
               {!isTradingOpen ? <Timer /> : "00:00"}
             </div>
+            {isShowProfitComponent && <Profit />}
           </div>
           <form onSubmit={onSubmit} className="  flex flex-col items-center mt-4 ">
             <div className="w-[70%]">

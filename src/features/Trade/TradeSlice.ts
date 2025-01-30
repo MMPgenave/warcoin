@@ -10,6 +10,7 @@ export const TradeSlice = createSlice({
     btcPriceAtTime0330: 1,
     btcPriceAfter24Hrs: 2,
     isShowProfit_Component: false,
+    profit: 0,
   },
   reducers: {
     setUserWarcoin: (state, action) => {
@@ -33,6 +34,9 @@ export const TradeSlice = createSlice({
     set_Show_Profit_Component: (state, action) => {
       state.isShowProfit_Component = action.payload;
     },
+    setProfit: (state, action) => {
+      state.profit = action.payload;
+    },
   },
 });
 
@@ -44,6 +48,7 @@ export const {
   setBitcoinPriceAtTime0330,
   setBitcoinPriceAfter24Hrs,
   set_Show_Profit_Component,
+  setProfit,
 } = TradeSlice.actions;
 
 export default TradeSlice.reducer;
