@@ -11,6 +11,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        primaryGreen: "#4ACC1C",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -56,5 +57,6 @@ export default {
       },
     },
   },
+  // eslint-disable-next-line no-undef
   plugins: [require("tailwindcss-animate")],
 };
