@@ -46,18 +46,18 @@ export const Friend: FC = () => {
               Invite Friends
             </div>
           </SheetTrigger>
-          <SheetContent side={"bottom"} className=" bg-black rounded-t-2xl border-t-0">
+          <SheetContent side={"bottom"} className=" bg-black rounded-t-2xl border-t-[0.5px] border-t-slate-500 ">
             <SheetHeader>
               <SheetTitle className=" text-[24px] font-bold text-white">Invite Friend</SheetTitle>
-              <SheetDescription className=" flex flex-col gap-4 pb-4">
-                <div className=" border-2 rounded border-primaryGreen flex items-center justify-center pt-[5px] pb-2">
+              <SheetDescription className=" !mt-5 flex flex-col gap-5 pb-4">
+                <div className=" border-2 rounded border-primaryGreen flex items-center justify-center py-3">
                   <div className=" flex gap-2 items-center ">
                     <img src={shareIcon} alt="share Icon" />
 
                     <div className=" text-[16px] font-medium text-white ">Share Link</div>
                   </div>
                 </div>
-                <div className=" border-2 rounded border-primaryGreen flex items-center justify-center pt-[5px] pb-2">
+                <div className=" border-2 rounded border-primaryGreen flex items-center justify-center py-3">
                   <div className=" flex gap-2 items-center ">
                     <img src={copyIcon} alt="copy Icon" />
                     <div className=" text-[16px] font-medium text-white ">Copy Link</div>
