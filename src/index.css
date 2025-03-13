@@ -93,6 +93,7 @@ body {
     /* Center becomes green */ rgba(74, 204, 28, 0) 100% /* Right edge ends with black */
   );
 }
+
 .gradient-orib {
   background: linear-gradient(
     155deg,
@@ -103,4 +104,13 @@ body {
 
     rgba(74, 204, 28, 0) 95%
   );
+}
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

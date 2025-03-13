@@ -16,12 +16,12 @@ import shareIcon from "@/mmpassets/shareIcon.png";
 
 export const Friend: FC = () => {
   return (
-    <div>
-      <div className=" mt-[44px] w-[238px] mx-auto text-center text-white text-2xl font-bold">
+    <div className=" max-w-[400px] mx-auto">
+      <div className=" mt-[64px] w-[238px] mx-auto text-center text-white text-2xl font-bold">
         Invite Friends and Get More Jubeo!
       </div>
 
-      <div className="mt-[44px] w-[85%] mx-auto gradient-to-center rounded-t-[50px] border border-transparent border-b-0">
+      <div className="mt-[64px] w-[85%] mx-auto gradient-to-center rounded-t-[50px] border border-transparent border-b-0">
         <div
           className=" mt-1 rounded-t-[50px] px-8 py-6 flex
        flex-col gap-2 text-white text-[14px] bg-black"
@@ -36,7 +36,7 @@ export const Friend: FC = () => {
           </div>
         </div>
       </div>
-      <div className="mt-[35px] mx-auto w-fit ">
+      <div className="mt-[55px] mx-auto w-fit ">
         <Sheet>
           <SheetTrigger>
             <div
@@ -69,7 +69,7 @@ export const Friend: FC = () => {
         </Sheet>
       </div>
 
-      <div className=" mt-[34px] mx-auto w-[92%] h-[206px] flex items-center justify-center   rounded-[40px] gradient-orib">
+      <div className=" mt-[54px] mx-auto w-[92%] h-[206px] flex items-center justify-center   rounded-[40px] gradient-orib">
         <div className="    rounded-[40px] h-[200px]  w-[99%] py-[30px] bg-black ">
           <div className=" flex items-center justify-between pl-[46px] pr-[21px] ">
             <div className=" flex items-center">
@@ -83,7 +83,7 @@ export const Friend: FC = () => {
               />
             </svg>
           </div>
-          <div className=" mt-[20px] h-[100px] overflow-y-auto flex flex-col gap-[10px] pl-[26px] pr-[21px]">
+          <div className=" mt-[20px] h-[100px] overflow-y-auto scrollbar-hide flex flex-col gap-[10px] pl-[26px] pr-[21px]">
             {friends.map((friend) => {
               const { id, name, coin } = friend;
               return (

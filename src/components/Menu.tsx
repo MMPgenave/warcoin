@@ -4,12 +4,12 @@ import { useLocation } from "react-router-dom";
 const Menu = () => {
   const location = useLocation();
   return (
-    <div className=" fixed bottom-0 flex justify-between  w-full px-[2.5rem] pb-3 z-10 ">
+    <div className=" fixed bottom-0 flex justify-between  w-full px-[3rem] pb-3 z-10 ">
       {routes.map((route) => (
         <Link
           to={route.path}
           key={route.title}
-          className=" flex flex-col gap-0 justify-center items-center text-[#fff] text-[1.3rem]
+          className=" flex flex-col gap-1 justify-center items-center text-[#fff] text-[1.3rem]
          "
         >
           {/* <i className={`bi ${route.icon}  `}></i> */}
