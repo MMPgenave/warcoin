@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 const Menu = () => {
   const location = useLocation();
   return (
-    <div className=" fixed bottom-0 flex justify-between  w-full px-[3rem] pb-3 z-10 ">
+    <div className=" fixed bottom-0 flex justify-between items-center max-w-[400px] w-full px-11  left-[50%] transform -translate-x-1/2  pb-3 z-10 ">
       {routes.map((route) => (
         <Link
           to={route.path}

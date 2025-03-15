@@ -16,7 +16,7 @@ import shareIcon from "@/mmpassets/shareIcon.png";
 
 export const Friend: FC = () => {
   return (
-    <div className=" max-w-[400px] mx-auto">
+    <div className=" max-w-[400px] mx-auto border ">
       <div className=" mt-[64px] w-[238px] mx-auto text-center text-white text-2xl font-bold">
         Invite Friends and Get More Jubeo!
       </div>
