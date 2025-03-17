@@ -50,14 +50,14 @@ export const Trade: FC = () => {
 
   async function setBitcoinPriceAtTwoDifferentTime() {
     const btcPrice = await fetchBitcoinPrice();
-    // alert(`btcPrice:${btcPrice}`);
     dispatch(setBitcoinPriceAtTime0330(Number(btcPrice)));
     setTimeout(async () => {
       const btcPrice = await fetchBitcoinPrice();
       dispatch(setBitcoinPriceAfter24Hrs(Number(btcPrice)));
       dispatch(set_Show_Profit_Component(true));
       dispatch(setTradingOpen(true));
-    }, 60000);
+      setSliderValue(0);
+    }, 600000); // fetch btc price after 10 min
   }
   const handleBuyOrSell = async (trade_type: string) => {
     dispatch(setTradeType(trade_type));
@@ -89,7 +89,7 @@ export const Trade: FC = () => {
 
   return (
     <div className=" max-w-[400px] mx-auto flex flex-col gap-0 items-center  mt-[25px] justify-center  ">
-      {!isTradingOpen ? <Timer /> : <StopWatch hr="00" min="00" sec="00" />}
+      {!isTradingOpen ? <Timer /> : <StopWatch hr="00" min="00" sec="00" color="blue" />}
 
       <div className=" mt-[30px] flex items-center gap-2 ">
         <div className=" text-[#fff] text-[20px] font-bold ">Margin</div>
@@ -133,43 +133,55 @@ export const Trade: FC = () => {
             </Tooltip>
             <div className="  text-[#fff]/50 font-medium text-[10px] ml-3 mt-1 ">Available:{userCoins}</div>
           </div>
-          <Slider
-            value={typeof sliderValue === "number" ? sliderValue : 0}
-            onChange={handleSliderChange}
-            aria-labelledby="input-slider"
-            valueLabelDisplay="on"
-            valueLabelFormat={(value) => `${value}%`}
-            disabled={!isTradingOpen}
-            // color="success"
-          />
-          <div className=" flex items-center justify-between gap-4 mt-4 text-[#fff] font-bold  w-[90%] ">
+          <div className="  w-full px-8">
+            <Slider
+              value={typeof sliderValue === "number" ? sliderValue : 0}
+              onChange={handleSliderChange}
+              aria-labelledby="input-slider"
+              valueLabelDisplay="on"
+              valueLabelFormat={(value) => `${value}%`}
+              disabled={!isTradingOpen}
+              // color="success"
+            />
+          </div>
+          <div className=" flex items-center justify-between gap-4 mt-4 text-[14px] font-medium   w-[90%] ">
             <button
               type="button"
-              disabled={!isTradingOpen}
+              disabled={!isTradingOpen || sliderValue === 0}
               onClick={handleBuyLong}
-              className=" px-1 py-2 w-1/2  rounded-sm bg-[#67aa50]"
+              className={`px-1 py-2 w-1/2  rounded-[4px] bg-primaryGreen  text-black  ${
+                !isTradingOpen || sliderValue === 0 ? "opacity-60" : "opacity-100"
+              }`}
             >
               Buy/Long
             </button>
             <button
               type="button"
-              disabled={!isTradingOpen}
+              disabled={!isTradingOpen || sliderValue === 0}
               onClick={handleSellShort}
-              className=" px-1 py-2 w-1/2  rounded-sm bg-[#be4130]"
+              className={`px-1 py-2 w-1/2 rounded-[4px] bg-[#EF5350] text-white ${
+                !isTradingOpen || sliderValue === 0 ? "opacity-60" : "opacity-100"
+              }`}
             >
               Sell/Short
             </button>
           </div>
         </form>
-        <div className=" flex flex-col gap-1 w-[90%] mt-3">
-          <div className=" flex gap-1 items-center text-gray-800 font-bold w-full">
-            <div className=" rounded-tl-sm bg-[#d1d2d4] w-1/2 flex justify-center">Amount</div>
-            <div className=" rounded-tr-sm bg-[#d1d2d4] w-1/2 flex justify-center">Position</div>
+        <div className=" mt-6 w-full h-2 gradient-to-center-gray "></div>
+        <div className=" relative flex flex-col  w-[90%] mt-4 px-6">
+          <div className=" flex  items-center text-white font-semibold text-[10px] w-full border-b-[2px] border-[#242D39] pb-2">
+            <div className="  w-1/2 flex justify-center">Amount</div>
+            <div className="   w-1/2 flex justify-center">Position</div>
           </div>
-          <div className="rounded-b-sm bg-[#d1d2d4] h-14 flex items-center">
-            <div className="w-1/2 flex justify-center text-lg text-gray-700">{!isTradingOpen && bet}</div>
-            <div className="w-1/2 flex justify-center text-lg text-gray-700">{!isTradingOpen && tradeType}</div>
+          <div className="  h-14 flex items-center text-[14px] font-bold ">
+            <div className="w-1/2 flex justify-center text-white  ">{!isTradingOpen && bet}</div>
+            <div
+              className={`w-1/2 flex justify-center ${tradeType === "Buy" ? "text-primaryGreen " : "text-[#EF5350]"} `}
+            >
+              {!isTradingOpen && tradeType}
+            </div>
           </div>
+          <div className=" absolute w-[2px] h-[100px] left-[50%] transform -translate-x-1/2 bg-gradient-to-b from-[#647E9F]/60 to-[#242D39] "></div>
         </div>
       </div>
     </div>
