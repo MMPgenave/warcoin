@@ -95,12 +95,12 @@ body {
 .gradient-orib {
   background: linear-gradient(
     155deg,
-    rgba(74, 204, 28, 0) 30%,
+    rgba(74, 204, 28, 0.07) 30%,
     rgba(74, 204, 28, 0.2) 42%,
     rgba(74, 204, 28, 0.7) 50%,
     rgba(74, 204, 28, 0.7) 65%,
 
-    rgba(74, 204, 28, 0) 95%
+    rgba(74, 204, 28, 0.07) 95%
   );
 }
 @layer utilities {

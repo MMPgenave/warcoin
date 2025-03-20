@@ -13,11 +13,11 @@ const friends = [
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import copyIcon from "@/mmpassets/copyIcon.png";
 import shareIcon from "@/mmpassets/shareIcon.png";
-
+import { Page } from "@/components/Page";
 export const Friend: FC = () => {
   return (
-    <div className=" max-w-[400px] mx-auto border ">
-      <div className=" mt-[64px] w-[238px] mx-auto text-center text-white text-2xl font-bold">
+    <Page>
+      <div className=" pt-[64px] w-[238px] mx-auto text-center text-white text-2xl font-bold">
         Invite Friends and Get More Jubeo!
       </div>
 
@@ -70,10 +70,10 @@ export const Friend: FC = () => {
       </div>
 
       <div className=" mt-[54px] mx-auto w-[92%] h-[206px] flex items-center justify-center   rounded-[40px] gradient-orib">
-        <div className="    rounded-[40px] h-[200px]  w-[99%] py-[30px] bg-black ">
+        <div className="    rounded-[40px] h-[200px]  w-[99%] py-[30px] bg-black text-white ">
           <div className=" flex items-center justify-between pl-[46px] pr-[21px] ">
             <div className=" flex items-center">
-              <div className=" Icon userIcon font-bold  text-[16px]">My Friends List</div>
+              <div className=" Icon userIcon font-bold   text-[16px]">My Friends List</div>
               <div className=" text-primaryGreen ml-1 font-semibold text-[14px]">{`(${friends.length})`}</div>
             </div>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +87,7 @@ export const Friend: FC = () => {
             {friends.map((friend) => {
               const { id, name, coin } = friend;
               return (
-                <div key={id} className=" relative flex justify-between items-center pb-[7px] ">
+                <div key={id} className=" relative flex justify-between items-center pb-[7px]  ">
                   <div className=" absolute w-1/2 -bottom-[2px] left-[50%] transform -translate-x-1/2 h-[1px]  gradient-to-center  "></div>
 
                   <div className=" flex gap-1 items-center">
@@ -101,6 +101,6 @@ export const Friend: FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Page>
   );
 };

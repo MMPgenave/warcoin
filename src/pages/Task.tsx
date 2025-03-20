@@ -1,12 +1,13 @@
 import { useState, type FC } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Page } from "@/components/Page";
 import InGame from "@/components/InGame";
 import Videos from "@/components/Videos";
 export const Task: FC = () => {
   const [activeTab, setActiveTab] = useState("game");
   return (
-    <div className=" ">
-      <div className=" mt-6 text-center text-[32px] font-bold tracking-[0px] text-primaryGreen">Task</div>
+    <Page>
+      <div className="  pt-6 text-center text-[32px] font-bold tracking-[0px] text-primaryGreen">Task</div>
       <div className="  text-xl text-white font-medium text-center">Earn More JUBEO!</div>
       <Tabs defaultValue="game" className=" mt-[40px] w-[400px]  mx-auto flex flex-col items-center ">
         <TabsList className="    w-[75%] bg-gradient-to-r from-[#141F11] to-[#101110] rounded-[13px] flex justify-between px-6 !py-6">
@@ -31,13 +32,13 @@ export const Task: FC = () => {
             </div>
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="game" className=" w-full px-5">
+        <TabsContent value="game" className=" w-full px-10">
           <InGame />
         </TabsContent>
-        <TabsContent value="video" className=" w-full px-5">
+        <TabsContent value="video" className=" w-full px-10">
           <Videos />
         </TabsContent>
       </Tabs>
-    </div>
+    </Page>
   );
 };

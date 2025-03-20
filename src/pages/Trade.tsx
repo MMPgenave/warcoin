@@ -15,7 +15,7 @@ import {
   set_Show_Profit_Component,
 } from "@/features/Trade/TradeSlice";
 import Slider from "@mui/material/Slider";
-
+import { Page } from "@/components/Page";
 // import { useQuery } from "@tanstack/react-query";
 import { fetchBitcoinPrice } from "@/utils/get-BTC-price";
 
@@ -88,102 +88,108 @@ export const Trade: FC = () => {
   };
 
   return (
-    <div className=" max-w-[400px] mx-auto flex flex-col gap-0 items-center  mt-[25px] justify-center  ">
-      {!isTradingOpen ? <Timer /> : <StopWatch hr="00" min="00" sec="00" color="blue" />}
+    <Page>
+      <div className="  flex flex-col gap-0 items-center  pt-[25px] px-2 justify-center  ">
+        {!isTradingOpen ? <Timer /> : <StopWatch hr="00" min="00" sec="00" color="blue" />}
 
-      <div className=" mt-[30px] flex items-center gap-2 ">
-        <div className=" text-[#fff] text-[20px] font-bold ">Margin</div>
-        <div className="flex items-center  justify-center leading-0  text-[#fff] bg-[#737373] size-6   rounded text-[10px] font-medium ">
-          3X
+        <div className=" mt-[30px] flex items-center gap-2 ">
+          <div className=" text-[#fff] text-[20px] font-bold ">Margin</div>
+          <div className="flex items-center  justify-center leading-0  text-[#fff] bg-[#737373] size-6   rounded text-[10px] font-medium ">
+            3X
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center justify-center mt-2  w-full">
-        <div className="flex flex-col h-[14rem] w-[77%] ">
-          <div
-            style={{ height: `${heightPercentage}%` }}
-            className={` bg-[#4ACC1C]/30  rounded-t-[4px] relative flex justify-center items-center `}
-          >
-            <div className=" font-extrabold text-[#4ACC1C] text-xl">{heightPercentage}%</div>
-            <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-[#d1d2d4] flex items-center gap-1 font-bold">
-              <div className=" text-white text-[16px] font-medium ">WarCoin</div>
-              {/* <i className="bi bi-coin"></i> */}
-              <img src={coin} alt="coin" />
-            </div>
-          </div>
-          <div
-            style={{ height: `${100 - Number(heightPercentage)}%` }}
-            className={`bg-[#EF5350]/30  rounded-b-[4px] flex justify-center items-center `}
-          >
-            <div className=" font-extrabold text-[#EF5350] text-xl">{(100 - Number(heightPercentage)).toFixed(2)}%</div>
-          </div>
-
-          {isShowProfitComponent && <Profit />}
-        </div>
-        <form onSubmit={onSubmit} className="  w-full flex flex-col items-center mt-6 ">
-          <div className=" w-[90%] mb-10     ">
-            <Tooltip text={`You can't bet more than ${userCoins} coins`} visible={visible}>
-              <input
-                type="number"
-                placeholder="Amount"
-                className=" rounded-[8px] w-[100%] text-[14px] font-medium p-3 text-[#ffffff]/40 bg-[#282828]"
-                onChange={handleOnChange}
-                value={inputvalue}
-                disabled={!isTradingOpen}
-              />
-            </Tooltip>
-            <div className="  text-[#fff]/50 font-medium text-[10px] ml-3 mt-1 ">Available:{userCoins}</div>
-          </div>
-          <div className="  w-full px-8">
-            <Slider
-              value={typeof sliderValue === "number" ? sliderValue : 0}
-              onChange={handleSliderChange}
-              aria-labelledby="input-slider"
-              valueLabelDisplay="on"
-              valueLabelFormat={(value) => `${value}%`}
-              disabled={!isTradingOpen}
-              // color="success"
-            />
-          </div>
-          <div className=" flex items-center justify-between gap-4 mt-4 text-[14px] font-medium   w-[90%] ">
-            <button
-              type="button"
-              disabled={!isTradingOpen || sliderValue === 0}
-              onClick={handleBuyLong}
-              className={`px-1 py-2 w-1/2  rounded-[4px] bg-primaryGreen  text-black  ${
-                !isTradingOpen || sliderValue === 0 ? "opacity-60" : "opacity-100"
-              }`}
-            >
-              Buy/Long
-            </button>
-            <button
-              type="button"
-              disabled={!isTradingOpen || sliderValue === 0}
-              onClick={handleSellShort}
-              className={`px-1 py-2 w-1/2 rounded-[4px] bg-[#EF5350] text-white ${
-                !isTradingOpen || sliderValue === 0 ? "opacity-60" : "opacity-100"
-              }`}
-            >
-              Sell/Short
-            </button>
-          </div>
-        </form>
-        <div className=" mt-6 w-full h-2 gradient-to-center-gray "></div>
-        <div className=" relative flex flex-col  w-[90%] mt-4 px-6">
-          <div className=" flex  items-center text-white font-semibold text-[10px] w-full border-b-[2px] border-[#242D39] pb-2">
-            <div className="  w-1/2 flex justify-center">Amount</div>
-            <div className="   w-1/2 flex justify-center">Position</div>
-          </div>
-          <div className="  h-14 flex items-center text-[14px] font-bold ">
-            <div className="w-1/2 flex justify-center text-white  ">{!isTradingOpen && bet}</div>
+        <div className="flex flex-col items-center justify-center mt-2  w-full">
+          <div className="flex flex-col h-[14rem] w-[77%] ">
             <div
-              className={`w-1/2 flex justify-center ${tradeType === "Buy" ? "text-primaryGreen " : "text-[#EF5350]"} `}
+              style={{ height: `${heightPercentage}%` }}
+              className={` bg-[#4ACC1C]/50  rounded-t-[4px] relative flex justify-center items-center `}
             >
-              {!isTradingOpen && tradeType}
+              <div className=" font-extrabold text-[#4ACC1C] text-xl">{heightPercentage}%</div>
+              <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 text-[#d1d2d4] flex items-center gap-1 font-bold">
+                <div className=" text-white text-[16px] font-medium ">WarCoin</div>
+                {/* <i className="bi bi-coin"></i> */}
+                <img src={coin} alt="coin" />
+              </div>
             </div>
+            <div
+              style={{ height: `${100 - Number(heightPercentage)}%` }}
+              className={`bg-[#EF5350]/50  rounded-b-[4px] flex justify-center items-center `}
+            >
+              <div className=" font-extrabold text-[#EF5350] text-xl">
+                {(100 - Number(heightPercentage)).toFixed(2)}%
+              </div>
+            </div>
+
+            {isShowProfitComponent && <Profit />}
           </div>
-          <div className=" absolute w-[2px] h-[100px] left-[50%] transform -translate-x-1/2 bg-gradient-to-b from-[#647E9F]/60 to-[#242D39] "></div>
+          <form onSubmit={onSubmit} className="  w-full flex flex-col items-center mt-6 ">
+            <div className=" w-[90%] mb-10     ">
+              <Tooltip text={`You can't bet more than ${userCoins} coins`} visible={visible}>
+                <input
+                  type="number"
+                  placeholder="Amount"
+                  className=" rounded-[8px] w-[100%] text-[14px] font-medium p-3 text-[#ffffff]/40 bg-[#282828]"
+                  onChange={handleOnChange}
+                  value={inputvalue}
+                  disabled={!isTradingOpen}
+                />
+              </Tooltip>
+              <div className="  text-[#fff]/50 font-medium text-[10px] ml-3 mt-1 ">Available:{userCoins}</div>
+            </div>
+            <div className="  w-full px-8">
+              <Slider
+                value={typeof sliderValue === "number" ? sliderValue : 0}
+                onChange={handleSliderChange}
+                aria-labelledby="input-slider"
+                valueLabelDisplay="on"
+                valueLabelFormat={(value) => `${value}%`}
+                disabled={!isTradingOpen}
+                // color="success"
+              />
+            </div>
+            <div className=" flex items-center justify-between gap-4 mt-4 text-[14px] font-medium   w-[90%] ">
+              <button
+                type="button"
+                disabled={!isTradingOpen || sliderValue === 0}
+                onClick={handleBuyLong}
+                className={`px-1 py-2 w-1/2  rounded-[4px] bg-primaryGreen  text-black  ${
+                  !isTradingOpen || sliderValue === 0 ? "opacity-60" : "opacity-100"
+                }`}
+              >
+                Buy/Long
+              </button>
+              <button
+                type="button"
+                disabled={!isTradingOpen || sliderValue === 0}
+                onClick={handleSellShort}
+                className={`px-1 py-2 w-1/2 rounded-[4px] bg-[#EF5350] text-white ${
+                  !isTradingOpen || sliderValue === 0 ? "opacity-60" : "opacity-100"
+                }`}
+              >
+                Sell/Short
+              </button>
+            </div>
+          </form>
+          <div className=" mt-6 w-full h-2 gradient-to-center-gray "></div>
+          <div className=" relative flex flex-col  w-[90%] mt-4 px-6">
+            <div className=" flex  items-center text-white font-semibold text-[10px] w-full border-b-[2px] border-[#242D39] pb-2">
+              <div className="  w-1/2 flex justify-center">Amount</div>
+              <div className="   w-1/2 flex justify-center">Position</div>
+            </div>
+            <div className="  h-14 flex items-center text-[14px] font-bold ">
+              <div className="w-1/2 flex justify-center text-white  ">{!isTradingOpen && bet}</div>
+              <div
+                className={`w-1/2 flex justify-center ${
+                  tradeType === "Buy" ? "text-primaryGreen " : "text-[#EF5350]"
+                } `}
+              >
+                {!isTradingOpen && tradeType}
+              </div>
+            </div>
+            <div className=" absolute w-[2px] h-[100px] left-[50%] transform -translate-x-1/2 bg-gradient-to-b from-[#647E9F]/60 to-[#242D39] "></div>
+          </div>
         </div>
       </div>
-    </div>
+    </Page>
   );
 };
