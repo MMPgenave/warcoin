@@ -1,25 +1,30 @@
 import { useState } from "react";
 import Checked from "@/mmpassets/checked.png";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-interface ITaskCard {
-  title: string;
-  prize: string;
-  img: string;
-}
-import { telegramChannelUsername } from "@/constant";
-// import WebApp from "@twa-dev/sdk";
-// import {useSignal} from "@telegram-apps/sdk-react";
+import { ITaskCard } from "@/types";
+import { telegramChannelUsername, YTChannelUsername } from "@/constant";
+import { useQuery } from "@tanstack/react-query";
+import { checkTelegramSubscription } from "@/lib/actions/task.action";
+import { initData, useSignal } from "@telegram-apps/sdk-react";
 export const TaskCard = ({ title, prize, img }: ITaskCard) => {
+  const initDataState = useSignal(initData.state);
   const [isDone, setIsDone] = useState(false);
-
+  const { data } = useQuery({
+    queryKey: ["checkTelegramSubscription"],
+    queryFn: () => checkTelegramSubscription(initDataState && initDataState.user?.id),
+    refetchOnWindowFocus: false,
+  });
+  console.log(`data from useQuery`, JSON.stringify(data, undefined, 2));
   function handleSubscribe() {
     switch (title) {
       case "Subscribe to channel":
-        // window.location.href = `https://t.me/${telegramChanneUsername}`;
         window.open(`https://t.me/${telegramChannelUsername}`, "_blank");
         setIsDone(true);
         break;
-
+      case "Subscribe to Youtube":
+        window.open(`https://www.youtube.com/${YTChannelUsername}`, "_blank");
+        setIsDone(true);
+        break;
       default:
         break;
     }
@@ -51,7 +56,7 @@ export const TaskCard = ({ title, prize, img }: ITaskCard) => {
                   Subscribe
                 </div>
                 <div className=" !mt-4 font-bold text-[20px] text-white  ">{prize}</div>
-                <div className=" !mt-4 rounded-[4px] bg-[#DFE0DE] text-[#101010] font-semibold text-[16px] w-full mx-auto px-5 py-2 ">
+                <div className=" !mt-4 rounded-[4px] text-center bg-[#DFE0DE] text-[#101010] font-semibold text-[16px] w-full mx-auto px-5 py-2 ">
                   Check
                 </div>
               </DialogHeader>

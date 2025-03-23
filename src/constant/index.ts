@@ -59,3 +59,4 @@ export const VideosItems = [
   },
 ];
 export const telegramChannelUsername = "shimi_farrrhani";
+export const YTChannelUsername = "@mohammadpanahi3989";
