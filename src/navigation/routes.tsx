@@ -15,6 +15,8 @@ import friendsAcitve from "@/mmpassets/friends-active.png";
 import friendsInAcitve from "@/mmpassets/friends-inactive.png";
 import walletAcitve from "@/mmpassets/wallet-active.png";
 import walletInAcitve from "@/mmpassets/wallet-inactive.png";
+import { InitDataPage } from "@/pages/InitDataPage";
+import { LaunchParamsPage } from "@/pages/LaunchParamsPage";
 
 interface Route {
   path: string;
@@ -65,5 +67,21 @@ export const routes: Route[] = [
     icon: "bi-wallet2",
     imgActive: walletAcitve,
     imgInActive: walletInAcitve,
+  },
+  {
+    path: "/initData",
+    Component: InitDataPage,
+    title: "initData",
+    icon: "bi-graph-up-arrow",
+    imgActive: "",
+    imgInActive: "",
+  },
+  {
+    path: "/launchParams",
+    Component: LaunchParamsPage,
+    title: "launchParams",
+    icon: "bi-graph-up-arrow",
+    imgActive: "",
+    imgInActive: "",
   },
 ];

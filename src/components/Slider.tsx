@@ -1,5 +1,3 @@
-import React from "react";
-
 const Slider = ({ percentage }: { percentage: number }) => {
   return (
     <div className={`mt-8 relative bg-[#282828] px-3 h-[2px] w-[82%]`}>

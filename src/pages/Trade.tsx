@@ -76,7 +76,7 @@ export const Trade: FC = () => {
     handleBuyOrSell("Sell");
   };
 
-  const handleSliderChange = (event: Event, newValue: number | number[]) => {
+  const handleSliderChange = (_event: Event, newValue: number | number[]) => {
     if (((newValue as number) * userCoins) / 100 <= userCoins) {
       setInputvalue(String(((newValue as number) * userCoins) / 100) as string);
       setVisible(false);

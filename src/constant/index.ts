@@ -58,3 +58,4 @@ export const VideosItems = [
     img: Clapperboard,
   },
 ];
+export const telegramChannelUsername = "shimi_farrrhani";

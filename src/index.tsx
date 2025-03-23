@@ -1,5 +1,4 @@
 import ReactDOM from "react-dom/client";
-import { StrictMode } from "react";
 import { retrieveLaunchParams } from "@telegram-apps/sdk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Root } from "@/components/Root.tsx";
@@ -20,9 +19,7 @@ try {
 
   root.render(
     <QueryClientProvider client={queryClient}>
-      <StrictMode>
-        <Root />
-      </StrictMode>
+      <Root />
     </QueryClientProvider>
   );
 } catch (e) {

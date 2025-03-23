@@ -1,14 +1,30 @@
 import { useState } from "react";
 import Checked from "@/mmpassets/checked.png";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-
 interface ITaskCard {
   title: string;
   prize: string;
   img: string;
 }
+import { telegramChannelUsername } from "@/constant";
+// import WebApp from "@twa-dev/sdk";
+// import {useSignal} from "@telegram-apps/sdk-react";
 export const TaskCard = ({ title, prize, img }: ITaskCard) => {
   const [isDone, setIsDone] = useState(false);
+
+  function handleSubscribe() {
+    switch (title) {
+      case "Subscribe to channel":
+        // window.location.href = `https://t.me/${telegramChanneUsername}`;
+        window.open(`https://t.me/${telegramChannelUsername}`, "_blank");
+        setIsDone(true);
+        break;
+
+      default:
+        break;
+    }
+    // setIsDone(true);
+  }
   return (
     <div className=" flex justify-between items-center py-4">
       <div className=" flex gap-3 items-center">
@@ -29,8 +45,8 @@ export const TaskCard = ({ title, prize, img }: ITaskCard) => {
                 <img src={img} alt={title} className=" mt-3 w-[64px] h-[64px] mx-auto  " />
                 <DialogTitle className=" !mt-5 text-[16px] font-semibold text-white ">{title}</DialogTitle>
                 <div
-                  className=" !mt-4  rounded-[4px] bg-[#DFE0DE] text-[#101010] font-semibold text-[12px] w-fit mx-auto px-6 py-[6px] "
-                  onClick={() => setIsDone(true)}
+                  className=" !mt-4 cursor-pointer  rounded-[4px] bg-[#DFE0DE] text-[#101010] font-semibold text-[12px] w-fit mx-auto px-6 py-[6px] "
+                  onClick={handleSubscribe}
                 >
                   Subscribe
                 </div>
